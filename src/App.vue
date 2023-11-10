@@ -39,7 +39,7 @@ export default {
 <template>
   <div class="container">
     <HeaderApp @perform-search="searchApi"/>
-    
+    <MainApp/>
   </div>
   
 </template>
