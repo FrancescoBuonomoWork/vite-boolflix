@@ -21,7 +21,7 @@ export default {
             //         flagsSRC: "../../public/Flag_of_Spain.svg.png"
             //     },
             // ]
-            languages:['it','en','sp']
+            languages:['it','en','es']
         }
     },
     methods: {
