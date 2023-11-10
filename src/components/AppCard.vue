@@ -7,29 +7,30 @@ export default {
     },
     data() {
         return {
-            languages: [
-                {
-                    lang: 'it',
-                    flagsSRC: "../../public/Flag_of_Italy.svg.png",
-                },
-                {
-                    lang: 'en',
-                    flagsSRC: "../../public/Flag_of_the_United_Kingdom.svg.png",
-                },
-                {
-                    lang: 'sp',
-                    flagsSRC: "../../public/Flag_of_Spain.svg.png"
-                },
-
-
-
-            ]
+            // languages: [
+            //     {
+            //         lang: 'it',
+            //         flagsSRC: "../../public/Flag_of_Italy.svg.png",
+            //     },
+            //     {
+            //         lang: 'en',
+            //         flagsSRC: "../../public/Flag_of_the_United_Kingdom.svg.png",
+            //     },
+            //     {
+            //         lang: 'sp',
+            //         flagsSRC: "../../public/Flag_of_Spain.svg.png"
+            //     },
+            // ]
+            languages:['it','en','sp']
         }
     },
     methods: {
         // getFlag(){
         //     v-if="film.original_language === 'it'"
 
+        // }
+        // getActiveFlag(){
+            
         // }
     }
 }
@@ -39,8 +40,10 @@ export default {
     <div class="card">
         <p>{{ film.title }}</p>
         <p>{{ film.original_title }}</p>
-        <p>{{ film.original_language }}
-            <img v-show="film.original_language === language.lang" v-for="language in languages" class="flag" :src="language.flagsSRC">
+
+        <p>
+            <img v-if="languages.includes(film.original_language)"  class="flag"  :src="`../../public/${film.original_language}.png`">
+            <span v-else>{{ film.original_language }}</span>    
             <!-- <img class="flag" src="../../public/Flag_of_the_United_Kingdom.svg.png">
             <img class="flag" src="../../public/Flag_of_Spain.svg.png"> -->
 
@@ -57,6 +60,8 @@ export default {
     .flag {
         width: 24px;
         height: 16px;
+       
     }
+    
 }
 </style>
