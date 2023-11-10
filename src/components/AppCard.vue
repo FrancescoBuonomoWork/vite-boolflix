@@ -3,18 +3,18 @@
 export default {
     name: 'AppCard',
     props:{
-        dateFilm: Array
+        film: Object
     }
 }
 </script>
 
 <template>
   <div>
-    <p>{{ dateFilm.title }}</p>
-    <p>{{ dateFilm.originalTitle }}</p>
+    <p>{{ film.title }}</p>
+    <p>{{ film.originalTitle }}</p>
     <p></p>
     <p></p>
-    {{ dateFilm }}
+    <!-- {{ dateFilm }} -->
   </div>
   
 </template>

@@ -18,7 +18,7 @@ export default {
 <template>
   <div>
    <h3>I Film trovati sono :</h3>
-    <AppCard v-for="mouvie in this.store.movies" :dateFilm="this.store.movies"/>
+    <AppCard v-for="movie in store.movies" :film="movie" :id="movie.id"/>
     <!-- {{ this.store.movies }} -->
   </div>
   

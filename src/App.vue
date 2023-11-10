@@ -26,7 +26,7 @@ export default {
         }
       }).then((res) =>{
         console.log(res.data.results)
-        this.store.movies.push(res.data.results)
+        this.store.movies = res.data.results;
 
       })
       this.store.searchVal = '';
