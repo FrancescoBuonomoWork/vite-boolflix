@@ -40,7 +40,7 @@ export default {
         <p>{{ film.title }}</p>
         <p>{{ film.original_title }}</p>
         <p>{{ film.original_language }}
-            <img  v-for="language in languages" class="flag" :src="language.flagsSRC">
+            <img v-show="film.original_language === language.lang" v-for="language in languages" class="flag" :src="language.flagsSRC">
             <!-- <img class="flag" src="../../public/Flag_of_the_United_Kingdom.svg.png">
             <img class="flag" src="../../public/Flag_of_Spain.svg.png"> -->
 
