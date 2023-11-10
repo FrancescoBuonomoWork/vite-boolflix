@@ -9,16 +9,19 @@ export default {
 </script>
 
 <template>
-  <div>
+    
+  <div class="card">
     <p>{{ film.title }}</p>
-    <p>{{ film.originalTitle }}</p>
-    <p></p>
-    <p></p>
-    <!-- {{ dateFilm }} -->
+    <p>{{ film.original_title }}</p>
+    <p>{{ film.original_language }}</p>
+    <p>{{ film.vote_average }}</p>
+
   </div>
   
 </template>
 
 <style scoped lang="scss">
-
+.card{
+    padding: 10px 5px;
+}
 </style>
