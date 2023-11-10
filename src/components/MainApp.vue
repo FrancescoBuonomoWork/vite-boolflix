@@ -7,6 +7,10 @@ export default {
 
 <template>
   <div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
     
   </div>
   
