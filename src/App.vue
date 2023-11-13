@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div id="app">
     <HeaderApp @perform-search="searchApi"/>
     <MainApp/>
   </div>
@@ -63,5 +63,11 @@ export default {
 
 <style lang="scss">
 @use './styles/general.scss';
-
+#app{
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+}
 </style>

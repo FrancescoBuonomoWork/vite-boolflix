@@ -9,24 +9,29 @@ export default {
     data() {
         return {
             languages: ['it', 'en', 'es'],
-            
+
         }
     },
     methods: {
-        getTitleOrName(){
-            if(this.item.title) {
+        getTitleOrName() {
+            if (this.item.title) {
                 return this.item.title
             } else {
                 return this.item.name
             }
         },
-        getTitleOrNameOriginal(){
-            if(this.item.original_title) {
+        getTitleOrNameOriginal() {
+            if (this.item.original_title) {
                 return this.item.original_title
             } else {
                 return this.item.original_name
             }
         },
+    },
+    computed: {
+        voteScale5() {
+            return Math.ceil(this.item.vote_average / 2)
+        }
     }
 }
 </script>
@@ -34,7 +39,7 @@ export default {
 <template>
     <div class="card">
         <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-        <p>{{getTitleOrName()}}</p>
+        <p>{{ getTitleOrName() }}</p>
         <p>{{ getTitleOrNameOriginal() }}</p>
         <!-- <p>{{ item.title }}</p> -->
         <!-- <p>{{ item.name }}</p> -->
@@ -47,14 +52,14 @@ export default {
         </p>
         <p>
             <!-- {{ Math.ceil(item.vote_average / 2) }} -->
-            <ul class="star-wrapper">
-                <li v-for="star in Math.ceil(item.vote_average / 2)">
+        <ul class="star-wrapper">
+            <li v-for="star in voteScale5">
                 <font-awesome-icon :icon="['fas', 'star']" />
-                </li>
-                <li v-for="star in 5-(Math.ceil(item.vote_average / 2))">
+            </li>
+            <li v-for="star in 5 - voteScale5">
                 <font-awesome-icon :icon="['far', 'star']" />
-                </li>     
-            </ul>
+            </li>
+        </ul>
         </p>
 
     </div>
@@ -69,7 +74,8 @@ export default {
         height: 16px;
 
     }
-    .star-wrapper{
+
+    .star-wrapper {
         display: flex;
     }
 }
