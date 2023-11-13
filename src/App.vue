@@ -18,6 +18,11 @@ export default {
   methods:{
     searchApi(){
       console.log(this.store.searchVal)
+
+      if(this.store.searchVal === '') {
+        store.movies = [];
+        store.serieTV = [];
+      }
       // qui chiamo l api dandogli la chiave e il valore nel input del header 
       axios.get('https://api.themoviedb.org/3/search/movie',{
         params: {
