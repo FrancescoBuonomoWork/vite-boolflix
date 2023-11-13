@@ -3,7 +3,8 @@
 export default {
     name: 'AppCard',
     props: {
-        item: Object
+        item: Object,
+        required: true
     },
     data() {
         return {
