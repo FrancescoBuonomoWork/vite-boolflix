@@ -8,7 +8,8 @@ export default {
     },
     data() {
         return {
-            languages: ['it', 'en', 'es']
+            languages: ['it', 'en', 'es'],
+            
         }
     },
     methods: {
@@ -26,13 +27,6 @@ export default {
                 return this.item.original_name
             }
         },
-        getVoteStars() {
-            vote = Math.ceil(vote / 2);
-            console.log(vote)
-
-           
-        }
-
     }
 }
 </script>
