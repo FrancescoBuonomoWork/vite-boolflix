@@ -14,10 +14,17 @@ export default {
     },
     methods: {
         getTitleOrName(){
-            if(this.item.title === true) {
+            if(this.item.title !== "") {
                 return this.item.title
-            } else if (this.item.name === true){
+            } else if (this.item.name !== ""){
                 return this.item.name
+            }
+        },
+        getTitleOrNameOriginal(){
+            if(this.item.original_title !== "") {
+                return this.item.original_title
+            } else if (this.item.original_name !== ""){
+                return this.item.original_name
             }
         },
         getVoteStars(vote) {
@@ -34,10 +41,11 @@ export default {
     <div class="card">
         <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
         <p>{{getTitleOrName()}}</p>
+        <p>{{ getTitleOrNameOriginal() }}</p>
         <!-- <p>{{ item.title }}</p> -->
         <!-- <p>{{ item.name }}</p> -->
-        <p>{{ item.original_title }}</p>
-        <p>{{ item.original_name }}</p>
+        <!-- <p>{{ item.original_title }}</p>
+        <p>{{ item.original_name }}</p> -->
         <p>
             <img v-if="languages.includes(item.original_language)" class="flag"
                 :src="`../../public/${item.original_language}.png`">
