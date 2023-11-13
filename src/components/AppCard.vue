@@ -7,31 +7,11 @@ export default {
     },
     data() {
         return {
-            // languages: [
-            //     {
-            //         lang: 'it',
-            //         flagsSRC: "../../public/Flag_of_Italy.svg.png",
-            //     },
-            //     {
-            //         lang: 'en',
-            //         flagsSRC: "../../public/Flag_of_the_United_Kingdom.svg.png",
-            //     },
-            //     {
-            //         lang: 'sp',
-            //         flagsSRC: "../../public/Flag_of_Spain.svg.png"
-            //     },
-            // ]
+           
             languages:['it','en','es']
         }
     },
     methods: {
-        // getFlag(){
-        //     v-if="film.original_language === 'it'"
-
-        // }
-        // getActiveFlag(){
-            
-        // }
     }
 }
 </script>
