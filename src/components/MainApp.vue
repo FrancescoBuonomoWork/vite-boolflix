@@ -22,20 +22,19 @@ export default {
             <div class="row">
                 <div class="col">
                     <div class="row" v-if="store.movies.length > 0">
-                        <h3 class="col">I Film trovati sono :</h3>
+                        <h3 class="col title">I Film trovati sono :</h3>
                         <AppCard class="col-4" v-for="movie in store.movies" :item="movie" :id="movie.id" />
                     </div>
-                    <div class="col" v-else>Nessun film trovato</div>
+                    <h3 class="col title" v-else>Nessun film trovato</h3>
 
                 </div>
                 <div class="row">
                     <div class="col">
-
                         <div class="row" v-if="store.series.length > 0">
-                            <h3 class="col">Le Serie TV trovate sono:</h3>
+                            <h3 class="col title">Le Serie TV trovate sono:</h3>
                             <AppCard class="col-4" v-for="serie in store.series" :item="serie" :id="serie.id" />
                         </div>
-                        <div class="col" v-else>Nessun Serie trovata</div>
+                        <h3 class="col title" v-else>Nessun Serie trovata</h3>
                     </div>
                 </div>
             </div>
@@ -51,6 +50,10 @@ export default {
     overflow-y: auto;
     // display: flex;
     // justify-content: space-around;
-
+    .title{
+        font-weight: 700;
+        font-size: 24px;
+        padding: 20px 0;
+    }
 }
 </style>

@@ -38,37 +38,39 @@ export default {
 
 <template>
     <div class="card">
-        <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-        <p>{{ getTitleOrName() }}</p>
-        <p>{{ getTitleOrNameOriginal() }}</p>
-        <!-- <p>{{ item.title }}</p> -->
-        <!-- <p>{{ item.name }}</p> -->
-        <!-- <p>{{ item.original_title }}</p>
-        <p>{{ item.original_name }}</p> -->
-        <p>
-            <img v-if="languages.includes(item.original_language)" class="flag"
-                :src="`../../public/${item.original_language}.png`">
-            <span v-else>{{ item.original_language }}</span>
-        </p>
-        <p>
-            <!-- {{ Math.ceil(item.vote_average / 2) }} -->
-        <ul class="star-wrapper">
-            <li v-for="star in voteScale5">
-                <font-awesome-icon :icon="['fas', 'star']" />
-            </li>
-            <li v-for="star in 5 - voteScale5">
-                <font-awesome-icon :icon="['far', 'star']" />
-            </li>
-        </ul>
-        </p>
+        <div class="card-wrapper">
 
+            <div class="card__img-wrapper">
+                <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
+            </div>
+            <div class="card__description-wrapper">
+    
+                <p>Titolo:{{ getTitleOrName() }}</p>
+                <p>Titolo originale:{{ getTitleOrNameOriginal() }}</p>
+                <p>
+                    <img v-if="languages.includes(item.original_language)" class="flag"
+                        :src="`../../public/${item.original_language}.png`">
+                    <span v-else>{{ item.original_language }}</span>
+                </p>
+                <ul class="star-wrapper">
+                     
+                    <li v-for="star in voteScale5">
+                        <font-awesome-icon :icon="['fas', 'star']" />
+                    </li>
+                    <li v-for="star in 5 - voteScale5">
+                        <font-awesome-icon :icon="['far', 'star']" />
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
 <style scoped lang="scss">
 .card {
     padding: 10px 5px;
-    
+    flex-shrink: 0;
+
     .flag {
         width: 24px;
         height: 16px;
@@ -77,6 +79,25 @@ export default {
 
     .star-wrapper {
         display: flex;
+    }
+    .card-wrapper{
+        position: relative;
+        .card__description-wrapper{
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            color: white;
+            padding: 10px 10px;
+            line-height: 1.5em;
+           
+        }
+    }
+    &:hover .card__description-wrapper{
+        display: block;
     }
 }
 </style>
