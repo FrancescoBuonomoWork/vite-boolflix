@@ -20,13 +20,12 @@ export default {
 <template>
     <div class="card">
         <p>{{ item.title }}</p>
+        <p>{{ item.name }}</p>
         <p>{{ item.original_title }}</p>
-
+        <p>{{ item.original_name }}</p>
         <p>
             <img v-if="languages.includes(item.original_language)"  class="flag"  :src="`../../public/${item.original_language}.png`">
             <span v-else>{{ item.original_language }}</span>    
-
-
         </p>
         <p>{{ item.vote_average }}</p>
 
