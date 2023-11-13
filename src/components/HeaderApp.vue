@@ -19,12 +19,24 @@ export default {
 </script>
 
 <template>
-    <div>
+    <header class="header">
         <h1>Boolflix</h1>
 
-        <input @keyup.enter="search" type="text" v-model.trim="this.store.searchVal">
-        <button @click="search" >Cerca</button>
-    </div>
+        <div class="search-wrapper">
+            <input @keyup.enter="search" type="text" v-model.trim="this.store.searchVal">
+            <button @click="search" >Cerca</button>
+        </div>
+    </header>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        color: red;
+        padding: 30px 16px;
+    }
+</style>

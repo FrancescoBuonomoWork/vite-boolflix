@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="">
 
         <h3>I Film trovati sono :</h3>
         <AppCard v-for="movie in store.movies" :item="movie" :id="movie.id" />

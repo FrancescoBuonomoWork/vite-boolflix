@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <HeaderApp @perform-search="searchApi"/>
     <MainApp/>
   </div>
