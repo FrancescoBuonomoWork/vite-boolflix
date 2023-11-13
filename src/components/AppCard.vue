@@ -16,7 +16,7 @@ export default {
         getTitleOrName(){
             if(this.item.title !== "") {
                 return this.item.title
-            } else if (this.item.name !== ""){
+            } else {
                 return this.item.name
             }
         },
