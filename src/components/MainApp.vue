@@ -18,30 +18,39 @@ export default {
 
 <template>
     <main class="main">
-        <div v-if="store.movies.length > 0">
-            <h3>I Film trovati sono :</h3>
-            <AppCard v-for="movie in store.movies" :item="movie" 
-            :id="movie.id" />
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="row" v-if="store.movies.length > 0">
+                        <h3 class="col">I Film trovati sono :</h3>
+                        <AppCard class="col-4" v-for="movie in store.movies" :item="movie" :id="movie.id" />
+                    </div>
+                    <div class="col" v-else>Nessun film trovato</div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+
+                        <div class="row" v-if="store.series.length > 0">
+                            <h3 class="col">Le Serie TV trovate sono:</h3>
+                            <AppCard class="col-4" v-for="serie in store.series" :item="serie" :id="serie.id" />
+                        </div>
+                        <div class="col" v-else>Nessun Serie trovata</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div v-else>Nessun film trovato</div>
-        <!-- {{ this.store.movies }} -->
-        <div v-if="store.series.length > 0">
-            <h3>Le Serie TV trovate sono:</h3>
-            <AppCard v-for="serie in store.series" 
-            :item="serie" 
-            :id="serie.id"/>
-        </div>
-        <div v-else>Nessun Serie trovata</div>
 
     </main>
 </template>
 
 <style scoped lang="scss">
-.main{
+.main {
     background-color: gray;
     flex-grow: 1;
     overflow-y: auto;
+    // display: flex;
+    // justify-content: space-around;
+
 }
-
-
 </style>

@@ -68,7 +68,7 @@ export default {
 <style scoped lang="scss">
 .card {
     padding: 10px 5px;
-
+    
     .flag {
         width: 24px;
         height: 16px;
