@@ -14,16 +14,16 @@ export default {
     },
     methods: {
         getTitleOrName(){
-            if(this.item.title !== "") {
+            if(this.item.title) {
                 return this.item.title
             } else {
                 return this.item.name
             }
         },
         getTitleOrNameOriginal(){
-            if(this.item.original_title !== "") {
+            if(this.item.original_title) {
                 return this.item.original_title
-            } else if (this.item.original_name !== ""){
+            } else {
                 return this.item.original_name
             }
         },
@@ -57,7 +57,7 @@ export default {
                 <font-awesome-icon :icon="['fas', 'star']" />
                 <font-awesome-icon :icon="['fas', 'star']" />
                 <font-awesome-icon :icon="['fas', 'star']" />
-                <font-awesome-icon :icon="['fas', 'star']" />
+                <font-awesome-icon :icon="['far', 'star']" />
             </div>
         </p>
 
