@@ -22,6 +22,7 @@ export default {
       if(this.store.searchVal === '') {
         store.movies = [];
         store.serieTV = [];
+        return
       }
       // qui chiamo l api dandogli la chiave e il valore nel input del header per i film
       axios.get('https://api.themoviedb.org/3/search/movie',{
@@ -68,6 +69,6 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  
+
 }
 </style>
