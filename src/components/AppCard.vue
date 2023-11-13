@@ -8,11 +8,24 @@ export default {
     },
     data() {
         return {
-           
-            languages:['it','en','es']
+
+            languages: ['it', 'en', 'es']
         }
     },
     methods: {
+        getTitleOrName(){
+            if(this.item.title === true) {
+                return this.item.title
+            } else if (this.item.name === true){
+                return this.item.name
+            }
+        },
+        getVoteStars(vote) {
+            vote = Math.ceil(vote / 2);
+
+           
+        }
+
     }
 }
 </script>
@@ -20,15 +33,25 @@ export default {
 <template>
     <div class="card">
         <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-        <p>{{ item.title }}</p>
-        <p>{{ item.name }}</p>
+        <p>{{getTitleOrName()}}</p>
+        <!-- <p>{{ item.title }}</p> -->
+        <!-- <p>{{ item.name }}</p> -->
         <p>{{ item.original_title }}</p>
         <p>{{ item.original_name }}</p>
         <p>
-            <img v-if="languages.includes(item.original_language)"  class="flag"  :src="`../../public/${item.original_language}.png`">
-            <span v-else>{{ item.original_language }}</span>    
+            <img v-if="languages.includes(item.original_language)" class="flag"
+                :src="`../../public/${item.original_language}.png`">
+            <span v-else>{{ item.original_language }}</span>
         </p>
-        <p>{{ item.vote_average }}</p>
+        <p>{{ item.vote_average }}
+            <div class="star-wrapper">
+                <font-awesome-icon :icon="['fas', 'star']" />
+                <font-awesome-icon :icon="['fas', 'star']" />
+                <font-awesome-icon :icon="['fas', 'star']" />
+                <font-awesome-icon :icon="['fas', 'star']" />
+                <font-awesome-icon :icon="['fas', 'star']" />
+            </div>
+        </p>
 
     </div>
 </template>
@@ -40,8 +63,8 @@ export default {
     .flag {
         width: 24px;
         height: 16px;
-       
+
     }
-    
+
 }
 </style>
