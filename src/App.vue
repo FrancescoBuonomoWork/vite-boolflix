@@ -43,7 +43,7 @@ export default {
         }
       }).then((res) =>{
         console.log(res.data.results)
-        this.store.serieTV = res.data.results;
+        this.store.series = res.data.results;
 
       })
       this.store.searchVal = '';

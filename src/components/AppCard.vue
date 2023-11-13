@@ -25,8 +25,7 @@ export default {
         <p>
             <img v-if="languages.includes(item.original_language)"  class="flag"  :src="`../../public/${item.original_language}.png`">
             <span v-else>{{ item.original_language }}</span>    
-            <!-- <img class="flag" src="../../public/Flag_of_the_United_Kingdom.svg.png">
-            <img class="flag" src="../../public/Flag_of_Spain.svg.png"> -->
+
 
         </p>
         <p>{{ item.vote_average }}</p>
