@@ -3,7 +3,7 @@
 export default {
     name: 'AppCard',
     props: {
-        film: Object
+        item: Object
     },
     data() {
         return {
@@ -18,17 +18,17 @@ export default {
 
 <template>
     <div class="card">
-        <p>{{ film.title }}</p>
-        <p>{{ film.original_title }}</p>
+        <p>{{ item.title }}</p>
+        <p>{{ item.original_title }}</p>
 
         <p>
-            <img v-if="languages.includes(film.original_language)"  class="flag"  :src="`../../public/${film.original_language}.png`">
-            <span v-else>{{ film.original_language }}</span>    
+            <img v-if="languages.includes(item.original_language)"  class="flag"  :src="`../../public/${item.original_language}.png`">
+            <span v-else>{{ item.original_language }}</span>    
             <!-- <img class="flag" src="../../public/Flag_of_the_United_Kingdom.svg.png">
             <img class="flag" src="../../public/Flag_of_Spain.svg.png"> -->
 
         </p>
-        <p>{{ film.vote_average }}</p>
+        <p>{{ item.vote_average }}</p>
 
     </div>
 </template>

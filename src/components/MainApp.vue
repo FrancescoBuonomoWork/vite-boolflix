@@ -19,7 +19,7 @@ export default {
   <div class="container">
        
             <h3>I Film trovati sono :</h3>
-                <AppCard v-for="movie in store.movies" :film="movie" :id="movie.id"/>
+                <AppCard v-for="movie in store.movies" :item="movie" :id="movie.id"/>
              <!-- {{ this.store.movies }} -->
         
      
