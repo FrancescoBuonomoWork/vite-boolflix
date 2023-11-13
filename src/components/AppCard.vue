@@ -19,6 +19,7 @@ export default {
 
 <template>
     <div class="card">
+        <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
         <p>{{ item.title }}</p>
         <p>{{ item.name }}</p>
         <p>{{ item.original_title }}</p>
