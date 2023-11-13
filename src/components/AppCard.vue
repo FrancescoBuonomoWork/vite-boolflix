@@ -8,7 +8,6 @@ export default {
     },
     data() {
         return {
-
             languages: ['it', 'en', 'es']
         }
     },
@@ -27,8 +26,9 @@ export default {
                 return this.item.original_name
             }
         },
-        getVoteStars(vote) {
+        getVoteStars() {
             vote = Math.ceil(vote / 2);
+            console.log(vote)
 
            
         }
@@ -51,14 +51,16 @@ export default {
                 :src="`../../public/${item.original_language}.png`">
             <span v-else>{{ item.original_language }}</span>
         </p>
-        <p>{{ item.vote_average }}
-            <div class="star-wrapper">
+        <p>
+            <!-- {{ Math.ceil(item.vote_average / 2) }} -->
+            <ul class="star-wrapper">
+                <li v-for="star in Math.ceil(item.vote_average / 2)">
                 <font-awesome-icon :icon="['fas', 'star']" />
-                <font-awesome-icon :icon="['fas', 'star']" />
-                <font-awesome-icon :icon="['fas', 'star']" />
-                <font-awesome-icon :icon="['fas', 'star']" />
+                </li>
+                <li v-for="star in 5-(Math.ceil(item.vote_average / 2))">
                 <font-awesome-icon :icon="['far', 'star']" />
-            </div>
+                </li>     
+            </ul>
         </p>
 
     </div>
@@ -73,6 +75,8 @@ export default {
         height: 16px;
 
     }
-
+    .star-wrapper{
+        display: flex;
+    }
 }
 </style>
