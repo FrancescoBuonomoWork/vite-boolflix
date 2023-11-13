@@ -23,7 +23,7 @@ export default {
         store.movies = [];
         store.serieTV = [];
       }
-      // qui chiamo l api dandogli la chiave e il valore nel input del header 
+      // qui chiamo l api dandogli la chiave e il valore nel input del header per i film
       axios.get('https://api.themoviedb.org/3/search/movie',{
         params: {
           'api_key': this.store.apiKey,
@@ -34,10 +34,22 @@ export default {
         this.store.movies = res.data.results;
 
       })
+      // this.store.searchVal = '';
+      // qui chiamo l API per le serie tv
+      axios.get('https://api.themoviedb.org/3/search/tv',{
+        params: {
+          'api_key': this.store.apiKey,
+          'query' : this.store.searchVal
+        }
+      }).then((res) =>{
+        console.log(res.data.results)
+        this.store.serieTV = res.data.results;
+
+      })
       this.store.searchVal = '';
     }
   },
-  
+ 
 }
 </script>
 
