@@ -26,7 +26,7 @@ export default {
             }).then((res)=>{
                 console.log(res.data.cast);
                
-                this.cast = res.data.cast
+                this.cast = res.data.cast.slice(0,5)
             })
 
           
@@ -81,7 +81,7 @@ export default {
                 </ul>
                 <button @click="fetchCast()">Vedi cast</button>
                 <ul>
-                    <li v-for="n in cast.slice(0)">
+                    <li v-for="n in cast">
                      <p>Personaggio: {{ n.character }}</p>   
                      <p>Nome attore: {{ n.original_name }}</p> 
                     </li>
