@@ -23,7 +23,7 @@ export default {
                 <div class="col">
                     <div class="row" v-if="store.movies.length > 0">
                         <h3 class="col title">I Film trovati sono :</h3>
-                        <AppCard  v-for="movie in store.movies" :item="movie" :id="movie.id" card-type="MOVIE"/>
+                        <AppCard  v-for="movie in store.movies" :item="movie" :key="movie.id" card-type="MOVIE"/>
                     </div>
                     <h3 class="col title" v-else>Nessun film trovato</h3>
 
@@ -32,7 +32,7 @@ export default {
                     <div class="col">
                         <div class="row" v-if="store.series.length > 0">
                             <h3 class="col title">Le Serie TV trovate sono:</h3>
-                            <AppCard v-for="serie in store.series" :item="serie" :id="serie.id" card-type="SERIES"/>
+                            <AppCard v-for="serie in store.series" :item="serie" :key="serie.id" card-type="SERIES"/>
                         </div>
                         <h3 class="col title" v-else>Nessun Serie trovata</h3>
                     </div>

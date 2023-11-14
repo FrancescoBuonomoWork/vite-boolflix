@@ -12,29 +12,28 @@ export default {
         return {
             languages: ['it', 'en', 'es'],
             store,
-            // cast:[],
-
+            cast: [],
         }
     },
     methods: {
-        fetchCast(){
-            this.store.cast = [];
+        fetchCast() {
+            //this.store.cast = [];
             let creditsUrl;
             if (this.cardType === 'MOVIE') {
                 creditsUrl = `https://api.themoviedb.org/3/movie/${this.item.id}/credits`
             } else {
                 creditsUrl = `https://api.themoviedb.org/3/tv/${this.item.id}/credits`
             }
-            axios.get(creditsUrl,{
-                params :{
+            axios.get(creditsUrl, {
+                params: {
                     'api_key': this.store.apiKey,
                 }
-            }).then((res)=>{
+            }).then((res) => {
                 console.log(res.data.cast);
-                this.store.cast = res.data.cast.slice(0,5)
+                this.cast = res.data.cast.slice(0, 5)
             })
 
-            
+
             // axios.get(`https://api.themoviedb.org/3/movie/${this.item.id}/credits`,{
             //     params :{
             //         'api_key': this.store.apiKey,
@@ -53,7 +52,7 @@ export default {
             //     this.cast = res.data.cast.slice(0,5)
             // })
 
-          
+
         },
         getTitleOrName() {
             if (this.item.title) {
@@ -76,7 +75,10 @@ export default {
         },
     },
     mounted() {
-        console.log(this.cardType);
+        console.log('mounted', this.cast);
+    },
+    created() {
+        console.log('created', this.cast);
     }
 }
 </script>
@@ -86,14 +88,14 @@ export default {
 
         <div class="card">
             <div class="card-wrapper">
-    
+
                 <div class="card__img-wrapper">
                     <img v-if="item.poster_path" :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-                    <img v-else  src="/carro.jpg" alt="">
+                    <img v-else src="/carro.jpg" alt="">
 
                 </div>
                 <div class="card__description-wrapper">
-        
+
                     <p>Titolo:{{ getTitleOrName() }}</p>
                     <p>Titolo originale:{{ getTitleOrNameOriginal() }}</p>
                     <p>
@@ -102,7 +104,7 @@ export default {
                         <span v-else>{{ item.original_language }}</span>
                     </p>
                     <ul class="star-wrapper">
-                         
+
                         <li v-for="star in voteScale5">
                             <font-awesome-icon :icon="['fas', 'star']" />
                         </li>
@@ -112,9 +114,9 @@ export default {
                     </ul>
                     <button @click="fetchCast()">Vedi cast</button>
                     <ul>
-                        <li v-for="n in store.cast">
-                         <p>Personaggio: {{ n.character }}</p>   
-                         <p>Nome attore: {{ n.original_name }}</p> 
+                        <li v-for="n in cast">
+                            <p>Personaggio: {{ n.character }}</p>
+                            <p>Nome attore: {{ n.original_name }}</p>
                         </li>
                     </ul>
                 </div>
@@ -126,8 +128,8 @@ export default {
 <style scoped lang="scss">
 .card {
     // padding: 10px 5px;
-    
-    
+
+
     .flag {
         width: 24px;
         height: 16px;
@@ -137,9 +139,11 @@ export default {
     .star-wrapper {
         display: flex;
     }
-    .card-wrapper{
+
+    .card-wrapper {
         position: relative;
-        .card__description-wrapper{
+
+        .card__description-wrapper {
             display: none;
             position: absolute;
             top: 0px;
@@ -150,15 +154,15 @@ export default {
             color: white;
             padding: 10px 10px;
             line-height: 1.5em;
-           
+
         }
     }
-    &:hover .card__description-wrapper{
+
+    &:hover .card__description-wrapper {
         display: block;
     }
 }
-.col-4{
-    padding: 10px 5px;
-}
 
-</style>
+.col-4 {
+    padding: 10px 5px;
+}</style>
