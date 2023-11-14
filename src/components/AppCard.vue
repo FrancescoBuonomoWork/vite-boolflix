@@ -86,7 +86,9 @@ export default {
             <div class="card-wrapper">
     
                 <div class="card__img-wrapper">
-                    <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
+                    <img v-if="item.poster_path" :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
+                    <img v-else class="carro" src="../../public/carro.jpg" alt="">
+
                 </div>
                 <div class="card__description-wrapper">
         
@@ -156,4 +158,5 @@ export default {
 .col-4{
     padding: 10px 5px;
 }
+
 </style>
