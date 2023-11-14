@@ -12,13 +12,13 @@ export default {
         return {
             languages: ['it', 'en', 'es'],
             store,
-            cast:[],
+            // cast:[],
 
         }
     },
     methods: {
         fetchCast(){
-
+            this.store.cast = [];
             let creditsUrl;
             if (this.cardType === 'MOVIE') {
                 creditsUrl = `https://api.themoviedb.org/3/movie/${this.item.id}/credits`
@@ -31,8 +31,10 @@ export default {
                 }
             }).then((res)=>{
                 console.log(res.data.cast);
-                this.cast = res.data.cast.slice(0,5)
+                this.store.cast = res.data.cast.slice(0,5)
             })
+
+            
             // axios.get(`https://api.themoviedb.org/3/movie/${this.item.id}/credits`,{
             //     params :{
             //         'api_key': this.store.apiKey,
@@ -87,7 +89,7 @@ export default {
     
                 <div class="card__img-wrapper">
                     <img v-if="item.poster_path" :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-                    <img v-else class="carro" src="../../public/carro.jpg" alt="">
+                    <img v-else  src="/carro.jpg" alt="">
 
                 </div>
                 <div class="card__description-wrapper">
@@ -110,7 +112,7 @@ export default {
                     </ul>
                     <button @click="fetchCast()">Vedi cast</button>
                     <ul>
-                        <li v-for="n in cast">
+                        <li v-for="n in store.cast">
                          <p>Personaggio: {{ n.character }}</p>   
                          <p>Nome attore: {{ n.original_name }}</p> 
                         </li>
