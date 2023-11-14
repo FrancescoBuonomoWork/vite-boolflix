@@ -5,7 +5,8 @@ export default {
     name: 'AppCard',
     props: {
         item: Object,
-        required: true
+        required: true,
+        cardType: String,
     },
     data() {
         return {
@@ -17,28 +18,38 @@ export default {
     },
     methods: {
         fetchCast(){
-            // this.$emit('showCast');
-            axios.get(`https://api.themoviedb.org/3/movie/${this.item.id}/credits`,{
+
+            let creditsUrl;
+            if (this.cardType === 'MOVIE') {
+                creditsUrl = `https://api.themoviedb.org/3/movie/${this.item.id}/credits`
+            } else {
+                creditsUrl = `https://api.themoviedb.org/3/tv/${this.item.id}/credits`
+            }
+            axios.get(creditsUrl,{
                 params :{
                     'api_key': this.store.apiKey,
-                    
                 }
             }).then((res)=>{
                 console.log(res.data.cast);
-               
                 this.cast = res.data.cast.slice(0,5)
             })
-            
-            axios.get(`https://api.themoviedb.org/3/tv/${this.item.id}/credits`,{
-                params :{
-                    'api_key': this.store.apiKey,
-                    
-                }
-            }).then((res)=>{
-                console.log(res.data.cast);
-               
-                this.cast = res.data.cast.slice(0,5)
-            })
+            // axios.get(`https://api.themoviedb.org/3/movie/${this.item.id}/credits`,{
+            //     params :{
+            //         'api_key': this.store.apiKey,
+            //     }
+            // }).then((res)=>{
+            //     console.log(res.data.cast);
+            //     this.cast = res.data.cast.slice(0,5)
+            // })
+
+            // axios.get(`https://api.themoviedb.org/3/tv/${this.item.id}/credits`,{
+            //     params :{
+            //         'api_key': this.store.apiKey,
+            //     }
+            // }).then((res)=>{
+            //     console.log(res.data.cast);  
+            //     this.cast = res.data.cast.slice(0,5)
+            // })
 
           
         },
@@ -61,6 +72,9 @@ export default {
         voteScale5() {
             return Math.ceil(this.item.vote_average / 2)
         },
+    },
+    mounted() {
+        console.log(this.cardType);
     }
 }
 </script>
@@ -108,7 +122,7 @@ export default {
 <style scoped lang="scss">
 .card {
     // padding: 10px 5px;
-    flex-shrink: 0;
+    
     
     .flag {
         width: 24px;
