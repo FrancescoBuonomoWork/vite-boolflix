@@ -10,24 +10,26 @@ export default {
     data() {
         return {
             languages: ['it', 'en', 'es'],
-            store
+            store,
+            cast:[],
 
         }
     },
     methods: {
         fetchCast(){
             // this.$emit('showCast');
-            axios.get('https://api.themoviedb.org/3/movie/{movie_id}/credits',{
+            axios.get(`https://api.themoviedb.org/3/movie/${this.item.id}/credits`,{
                 params :{
-                    'movie_id': this.store.movies.id,
                     'api_key': this.store.apiKey,
                     
                 }
             }).then((res)=>{
-                console.log(res)
+                console.log(res.data.cast);
+               
+                this.cast = res.data.cast
             })
 
-
+          
         },
         getTitleOrName() {
             if (this.item.title) {
@@ -47,7 +49,7 @@ export default {
     computed: {
         voteScale5() {
             return Math.ceil(this.item.vote_average / 2)
-        }
+        },
     }
 }
 </script>
@@ -78,6 +80,12 @@ export default {
                     </li>
                 </ul>
                 <button @click="fetchCast()">Vedi cast</button>
+                <ul>
+                    <li v-for="n in cast.slice(0)">
+                     <p>Personaggio: {{ n.character }}</p>   
+                     <p>Nome attore: {{ n.original_name }}</p> 
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
