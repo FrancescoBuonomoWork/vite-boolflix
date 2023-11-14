@@ -1,5 +1,6 @@
 <script>
-
+import axios from 'axios'
+import { store } from '../store'
 export default {
     name: 'AppCard',
     props: {
@@ -9,10 +10,25 @@ export default {
     data() {
         return {
             languages: ['it', 'en', 'es'],
+            store
 
         }
     },
     methods: {
+        fetchCast(){
+            // this.$emit('showCast');
+            axios.get('https://api.themoviedb.org/3/movie/{movie_id}/credits',{
+                params :{
+                    'movie_id': this.store.movies.id,
+                    'api_key': this.store.apiKey,
+                    
+                }
+            }).then((res)=>{
+                console.log(res)
+            })
+
+
+        },
         getTitleOrName() {
             if (this.item.title) {
                 return this.item.title
@@ -61,6 +77,7 @@ export default {
                         <font-awesome-icon :icon="['far', 'star']" />
                     </li>
                 </ul>
+                <button @click="fetchCast()">Vedi cast</button>
             </div>
         </div>
     </div>
