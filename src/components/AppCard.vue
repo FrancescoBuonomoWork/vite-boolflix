@@ -28,6 +28,17 @@ export default {
                
                 this.cast = res.data.cast.slice(0,5)
             })
+            
+            axios.get(`https://api.themoviedb.org/3/tv/${this.item.id}/credits`,{
+                params :{
+                    'api_key': this.store.apiKey,
+                    
+                }
+            }).then((res)=>{
+                console.log(res.data.cast);
+               
+                this.cast = res.data.cast.slice(0,5)
+            })
 
           
         },
@@ -55,37 +66,40 @@ export default {
 </script>
 
 <template>
-    <div class="card">
-        <div class="card-wrapper">
+    <div class="col-4">
 
-            <div class="card__img-wrapper">
-                <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
-            </div>
-            <div class="card__description-wrapper">
+        <div class="card">
+            <div class="card-wrapper">
     
-                <p>Titolo:{{ getTitleOrName() }}</p>
-                <p>Titolo originale:{{ getTitleOrNameOriginal() }}</p>
-                <p>
-                    <img v-if="languages.includes(item.original_language)" class="flag"
-                        :src="`../../public/${item.original_language}.png`">
-                    <span v-else>{{ item.original_language }}</span>
-                </p>
-                <ul class="star-wrapper">
-                     
-                    <li v-for="star in voteScale5">
-                        <font-awesome-icon :icon="['fas', 'star']" />
-                    </li>
-                    <li v-for="star in 5 - voteScale5">
-                        <font-awesome-icon :icon="['far', 'star']" />
-                    </li>
-                </ul>
-                <button @click="fetchCast()">Vedi cast</button>
-                <ul>
-                    <li v-for="n in cast">
-                     <p>Personaggio: {{ n.character }}</p>   
-                     <p>Nome attore: {{ n.original_name }}</p> 
-                    </li>
-                </ul>
+                <div class="card__img-wrapper">
+                    <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`">
+                </div>
+                <div class="card__description-wrapper">
+        
+                    <p>Titolo:{{ getTitleOrName() }}</p>
+                    <p>Titolo originale:{{ getTitleOrNameOriginal() }}</p>
+                    <p>
+                        <img v-if="languages.includes(item.original_language)" class="flag"
+                            :src="`../../public/${item.original_language}.png`">
+                        <span v-else>{{ item.original_language }}</span>
+                    </p>
+                    <ul class="star-wrapper">
+                         
+                        <li v-for="star in voteScale5">
+                            <font-awesome-icon :icon="['fas', 'star']" />
+                        </li>
+                        <li v-for="star in 5 - voteScale5">
+                            <font-awesome-icon :icon="['far', 'star']" />
+                        </li>
+                    </ul>
+                    <button @click="fetchCast()">Vedi cast</button>
+                    <ul>
+                        <li v-for="n in cast">
+                         <p>Personaggio: {{ n.character }}</p>   
+                         <p>Nome attore: {{ n.original_name }}</p> 
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -93,9 +107,9 @@ export default {
 
 <style scoped lang="scss">
 .card {
-    padding: 10px 5px;
+    // padding: 10px 5px;
     flex-shrink: 0;
-
+    
     .flag {
         width: 24px;
         height: 16px;
@@ -114,7 +128,7 @@ export default {
             left: 0px;
             right: 0;
             bottom: 0;
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 10px 10px;
             line-height: 1.5em;
@@ -124,5 +138,8 @@ export default {
     &:hover .card__description-wrapper{
         display: block;
     }
+}
+.col-4{
+    padding: 10px 5px;
 }
 </style>
